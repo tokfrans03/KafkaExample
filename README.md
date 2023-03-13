@@ -1,23 +1,47 @@
 # Kafa
 
-
-extract kafka
-
-`bin/kafka-server-start.sh config/server.properties`
-
-`bin/zookeeper-server-start.sh config/zookeeper.properties`
-
-`bin/kafka-topics.sh --delete --topic sshd-log-topic --bootstrap-server localhost:9092`
-
-`bin/kafka-topics.sh --create --topic sshd-log-topic --bootstrap-server localhost:9092` 
-
-`mvn exec:java -Dexec.mainClass=myapps.SSHD`
-
-`bin/kafka-console-producer.sh --topic sshd-log-topic --bootstrap-server localhost:9092`
-
-`bin/kafka-console-consumer.sh --topic sshd-log-topic --from-beginning --bootstrap-server localhost:9092`
+## Usage
 
 
+1. extract kafka
+
+    `cd kafka`
+
+1. Start Zookeeper
+    
+    `bin/zookeeper-server-start.sh config/zookeeper.properties`
+
+1. start kafka server
+
+    `bin/kafka-server-start.sh config/server.properties`
+
+1. Remove old topic
+
+    `bin/kafka-topics.sh --delete --topic sshd-log-topic --bootstrap-server localhost:9092`
+
+1. Create topic
+
+    `bin/kafka-topics.sh --create --topic sshd-log-topic --bootstrap-server localhost:9092` 
+
+1. build
+    
+    I had trouble building with maven so I used Intellij instead
+
+1. Run class 
+
+    `cd streams.example`
+
+    `mvn exec:java -Dexec.mainClass=myapps.SSHD`
+
+1. Start producer
+    
+    `bin/kafka-console-producer.sh --topic sshd-log-topic --bootstrap-server localhost:9092`
+
+1. Check output
+
+    `bin/kafka-console-consumer.sh --topic sshd-log-topic --from-beginning --bootstrap-server localhost:9092`
+
+1. Now paste the content from `syslog.txt` into the producer terminal. JSON objects should be printed to standard out of the maven terminal like below 
 
 
 
