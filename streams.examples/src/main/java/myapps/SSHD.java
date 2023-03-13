@@ -63,8 +63,13 @@ public class SSHD {
         // Since no year is present in the log just put the current one
         int year = LocalDateTime.now().get(ChronoField.YEAR);
         String timestampString = String.format("%s %s %d %s", matcher.group("month"), matcher.group("day"), year, matcher.group("time"));
+        
+        // input format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm:ss");
+        // output format
         DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
+        
+        // parse
         LocalDateTime timestamp = LocalDateTime.parse(timestampString, formatter);
         String TZ_timestamp = timestamp.atOffset(ZoneOffset.UTC).format(newFormat);
 

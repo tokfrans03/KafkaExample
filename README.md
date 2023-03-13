@@ -1,11 +1,11 @@
 # Kafa
 
 ## Usage
-
+Tested on Windows 10 running WSL 2
 
 1. extract kafka
 
-    `cd kafka`
+    `cd kafka_2.13-3.4.0`
 
 1. Start Zookeeper
     
@@ -25,7 +25,7 @@
 
 1. build
     
-    I had trouble building with maven so I used Intellij instead
+    I had trouble building the project with maven so I instead opened the project in Intellij and built it there instead. It can then be ran from maven.
 
 1. Run class 
 
